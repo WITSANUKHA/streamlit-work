@@ -1,27 +1,38 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import altair as alt
-import pydeck as pdk
+import folium as fo
+from streamlit_folium import folium_static
+import geopandas as gp
 import datetime
 
-st.title("STREAMLIT HW")
-st.markdown(
-"""
-MR.WARACH CHANGWATTHANAKUL
-6030821521 SURVEY ENGINEER
-""")
+import altair as alt
+import pydeck as pdk
+
+st.title('ST WORK')
+'''
+## [Developed from](https://github.com/streamlit/demo-uber-nyc-pickups)
+'''
+
+st.markdown('''
+Mr.WITSANU KHAKHRUANGRUAN 6030822121
+''')
+'''
+## [See my source code](https://github.com/WITSANUKHA/streamlit-work/blob/master/stwork.py)
+'''
 
 START = "timestart"
-day = st.slider("Day to look at", 1, 4, step = 1)
+day = st.slider("Select Day",1,5,step = 1)
 if day == 1:
-    DATA_URL = ("https://raw.githubusercontent.com/warach7/STREAMLIT_HW/master/20190101.csv")
+        DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190101.csv")
 elif day == 2:
-    DATA_URL = ("https://raw.githubusercontent.com/warach7/STREAMLIT_HW/master/20190103.csv")
+        DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190102.csv")
 elif day == 3:
-    DATA_URL = ("https://raw.githubusercontent.com/warach7/STREAMLIT_HW/master/20190104.csv")
+        DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190103.csv")
 elif day == 4:
-    DATA_URL = ("https://raw.githubusercontent.com/warach7/STREAMLIT_HW/master/20190105.csv")
+        DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190104.csv")
+else:
+        DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190105.csv")
 
 def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows)
