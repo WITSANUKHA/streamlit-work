@@ -19,6 +19,7 @@ Mr.WITSANU KHAKHRUANGRUAN 6030822121
 '''
 
 start = "timestart"
+stop = "timestop"
 day = st.slider("Select Day", 1, 5)
 if day == 1:
         url = ("https://raw.githubusercontent.com/WITSANUKHA/streamlit-work/master/20190101.csv")
@@ -88,6 +89,68 @@ st.altair_chart(alt.Chart(chart_data)
         tooltip=['minute', 'pickups']
     ), use_container_width=True)
 
+if st.checkbox("Show raw data", False):
+    st.subheader("Raw data by minute between %i:00 and %i:00" % (hour, (hour + 1) % 24))
+    st.write(data)
+
+#################################################################
+def load_datas(nrows):
+    data = pd.read_csv(url, nrows=nrows)
+    lowercase = lambda x: str(x).lower()
+    data.rename(lowercase, axis="columns", inplace=True)
+    data[stop] = pd.to_datetime(data[stop])
+    return data
+
+data = load_datas(100000)
+
+hour = st.slider("Select Hour", 0, 23)
+
+data = data[data[stop].dt.hour == hour]
+data = data.drop(data.columns[0], axis=1)
+for i in range(5):
+    data = data.drop(data.columns[6], axis=1)
+
+st.subheader("STOP Data between %i:00 and %i:00" % (hour, (hour + 1) % 24))
+midpoint = (np.average(data["latstop"]), np.average(data["lonstop"]))
+
+st.write(pdk.Deck(
+    map_style="mapbox://styles/mapbox/dark-v9",
+    initial_view_state={
+        "latitude": midpoint[0],
+        "longitude": midpoint[1],
+        "zoom": 11,
+        "pitch": 50,
+    },
+    layers=[
+        pdk.Layer(
+            "HexagonLayer",
+            data=data,
+            get_position=["lonstop", "latstop"],
+            radius=150,
+            elevation_scale=5,
+            elevation_range=[0, 1000],
+            pickable=True,
+            extruded=True,
+        ),
+    ],
+))
+
+st.subheader("STOP by minute between %i:00 and %i:00" % (hour, (hour + 1) % 24))
+filtered = data[
+    (data[stop].dt.hour >= hour) & (data[stop].dt.hour < (hour + 1))
+]
+hist = np.histogram(filtered[stop].dt.minute, bins=60, range=(0, 60))[0]
+chart_data = pd.DataFrame({"minute": range(60), "pickups": hist})
+
+st.altair_chart(alt.Chart(chart_data)
+    .mark_area(
+        interpolate='step-after',
+    ).encode(
+        x=alt.X("minute:Q", scale=alt.Scale(nice=False)),
+        y=alt.Y("pickups:Q"),
+        tooltip=['minute', 'pickups']
+    ), use_container_width=True)
+#########################
 if st.checkbox("Show raw data", False):
     st.subheader("Raw data by minute between %i:00 and %i:00" % (hour, (hour + 1) % 24))
     st.write(data)
