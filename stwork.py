@@ -5,11 +5,10 @@ import altair as alt
 import pydeck as pdk
 import datetime
 
-st.title("STREAMLIT HW")
+st.title("ST WORK")
 st.markdown(
 """
-MR.WARACH CHANGWATTHANAKUL
-6030821521 SURVEY ENGINEER
+[See source code](https://github.com/streamlit/demo-uber-nyc-pickups/blob/master/app.py)
 """)
 
 START = "timestart"
