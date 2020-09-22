@@ -93,7 +93,6 @@ st.altair_chart(alt.Chart(chart_data)
         x=alt.X("minute:Q", scale=alt.Scale(nice=False)),
         y=alt.Y("pickups:Q"),
         tooltip=['minute', 'pickups']
-        color=alt.value('red')
     ), use_container_width=True)
 
 if st.checkbox("Show raw data", False):
