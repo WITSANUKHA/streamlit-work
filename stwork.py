@@ -7,16 +7,16 @@ import geopandas as gp
 import datetime
 
 st.title('ST WORK')
-"""
+'''
 ## [Developed from](https://github.com/streamlit/demo-uber-nyc-pickups)
-"""
-st.markdown(""
+'''
+st.markdown('''
 Mr.WITSANU KHAKHRUANGRUAN 6030822121
-"")
+''')
 
-"""
+'''
 ## [See my source code](https://github.com/WITSANUKHA/streamlit-work/blob/master/stwork.py)
-"""
+'''
 
 time_start = "timestart"
 day = st.slider("Select Day",1,5,step = 1)
