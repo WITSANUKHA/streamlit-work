@@ -25,6 +25,9 @@ if day == 1:
         url = ("https://raw.githubusercontent.com/WITSANUKHA/streamlit-work/master/20190101.csv")
 elif day == 2:
         url = ("https://raw.githubusercontent.com/WITSANUKHA/streamlit-work/master/20190102.csv")
+        '''
+        ## DATA DAY 2 Error
+        '''
 elif day == 3:
         url = ("https://raw.githubusercontent.com/WITSANUKHA/streamlit-work/master/20190103.csv")
 elif day == 4:
