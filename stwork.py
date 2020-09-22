@@ -42,7 +42,7 @@ def load_data(nrows):
 
 data = load_data(100000)
 
-hour = st.slider("Hour to look at", 0, 23, step = 3)
+hour = st.slider("Hour to look at", 0, 23)
 
 data = data[data[start].dt.hour == hour]
 data = data.drop(data.columns[0], axis=1)
