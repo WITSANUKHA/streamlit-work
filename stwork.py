@@ -35,7 +35,7 @@ def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows)
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis="columns", inplace=True)
-    data[time_start] = pd.to_datetime(data[time_start])
+    data[time_start] = pd.to_datetime(data[time_start]'%d/%m?/%Y %H:%M')
     return data
 data = load_data(100000)
 
