@@ -9,7 +9,7 @@ import datetime
 import altair as alt
 import pydeck as pdk
 
-st.title('ST WORK')
+st.title('STREAMLIT-WORK')
 '''
 ## [Developed from](https://github.com/streamlit/demo-uber-nyc-pickups)
 '''
@@ -24,15 +24,15 @@ Mr.WITSANU KHAKHRUANGRUAN 6030822121
 START = "timestart"
 day = st.slider("Select Day",1,5,step = 1)
 if day == 1:
-        DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190101.csv")
+        DATA_URL = ("https://raw.githubusercontent.com/WITSANUKHA/streamlit-work/master/20190101.csv")
 elif day == 2:
-        DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190101.csv")
+        DATA_URL = ("https://raw.githubusercontent.com/WITSANUKHA/streamlit-work/master/20190102.csv")
 elif day == 3:
-        DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190103.csv")
+        DATA_URL = ("https://raw.githubusercontent.com/WITSANUKHA/streamlit-work/master/20190103.csv")
 elif day == 4:
-        DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190104.csv")
+        DATA_URL = ("https://raw.githubusercontent.com/WITSANUKHA/streamlit-work/master/20190104.csv")
 else:
-        DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190105.csv")
+        DATA_URL = ("https://raw.githubusercontent.com/WITSANUKHA/streamlit-work/master/20190105.csv")
 
 def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows)
