@@ -10,10 +10,10 @@ st.title('ST WORK')
 '''
 ## [Developed from](https://github.com/streamlit/demo-uber-nyc-pickups)
 '''
+
 st.markdown('''
 Mr.WITSANU KHAKHRUANGRUAN 6030822121
 ''')
-
 '''
 ## [See my source code](https://github.com/WITSANUKHA/streamlit-work/blob/master/stwork.py)
 '''
@@ -30,14 +30,16 @@ elif day == 4:
         url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190101.csv")
 else:
         url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190101.csv")
-
+        
+st.cache(persist=True)
 def load_data(nrows):
-    data = pd.read_csv(url, nrows=nrows)
+    data = pd.read_csv(DATA_URL, nrows=nrows)
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis="columns", inplace=True)
     data[time_start] = pd.to_datetime(data[time_start])
     return data
-data = load_data()
+
+data = load_data(100000)
 
 time = st.slider("Select time",0,23)
 data = data[data[time_start].dt.hour == hour]
