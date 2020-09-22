@@ -1,39 +1,48 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import folium as fo
+from streamlit_folium import folium_static
+import geopandas as gp
 import altair as alt
 import pydeck as pdk
 import datetime
 
+
 st.title("ST WORK")
 st.markdown("""
 Mr.WITSANU KHAKHRUANGRUAN 6030822121
-[See source code](https://github.com/WITSANUKHA/streamlit-work/blob/master/stwork.py)
 """)
 
-START = "timestart"
-day = st.slider("Day to look at", 1, 4, step = 1)
+"""
+## [See source code](https://github.com/WITSANUKHA/streamlit-work/blob/master/stwork.py)
+"""
+
+day = st.slider("Select Day",1,2,3,4,5)
 if day == 1:
-    DATA_URL = ("https://raw.githubusercontent.com/warach7/STREAMLIT_HW/master/20190101.csv")
+        url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190101.csv")
 elif day == 2:
-    DATA_URL = ("https://raw.githubusercontent.com/warach7/STREAMLIT_HW/master/20190103.csv")
+        url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190102.csv")
 elif day == 3:
-    DATA_URL = ("https://raw.githubusercontent.com/warach7/STREAMLIT_HW/master/20190104.csv")
+        url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190103.csv")
 elif day == 4:
-    DATA_URL = ("https://raw.githubusercontent.com/warach7/STREAMLIT_HW/master/20190105.csv")
+        url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190104.csv")
+else:
+        url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190105.csv")
+
+time_start = "timestart"
 
 def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows)
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis="columns", inplace=True)
-    data[START] = pd.to_datetime(data[START], format = '%d/%m/%Y %H:%M')
+    data[time_start] = pd.to_datetime(data[time_start])
     return data
+data = load_data()
 
-data = load_data(100000)
+time = st.slider("Select time",0,23)
+data = data[data[time_start].dt.hour == hour]
 
-hour = st.slider("Hour to look at", 0, 23, step = 3)
-
-data = data[data[START].dt.hour == hour]
 data = data.drop(data.columns[0], axis=1)
 for i in range(5):
     data = data.drop(data.columns[6], axis=1)
