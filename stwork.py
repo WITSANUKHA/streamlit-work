@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import folium as fo
-from streamlit_folium import folium_static
 import geopandas as gp
 import datetime
 import altair as alt
@@ -37,7 +35,7 @@ def load_data(nrows):
     data = pd.read_csv(url, nrows=nrows)
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis="columns", inplace=True)
-    data[start] = pd.to_datetime(data[start], format = '%d/%m/%Y %H:%M')
+    data[start] = pd.to_datetime(data[start])
     return data
 
 data = load_data(100000)
@@ -93,33 +91,3 @@ st.altair_chart(alt.Chart(chart_data)
 if st.checkbox("Show raw data", False):
     st.subheader("Raw data by minute between %i:00 and %i:00" % (hour, (hour + 3) % 24))
     st.write(data)
-
-######################
-
-crs = "EPSG:4326"
-geometry = gp.points_from_xy(data.lonstartl,data.latstartl)
-geo_df  = gp.GeoDataFrame(data,crs=crs,geometry=geometry)
-
-boundary  = gp.read_file(url)
-nanall = nan_boundary.unary_union
-
-sta = geo_df.loc[geo_df.geometry.within(nanall)]
-
-
-longitude = 100.819200
-latitude = 19.331900
-
-station_map = fo.Map(
-	location = [latitude, longitude], 
-	zoom_start = 10)
-
-latitudes = list(sta.latstartl)
-longitudes = list(sta.latstartl)
-
-for lat, lng in zip(latitudes, longitudes):
-	fo.Marker(
-		location = [lat, lng], 
-		icon = fo.Icon(color='red', icon='heart')
-	).add_to(station_map)
-
-folium_static(station_map)
