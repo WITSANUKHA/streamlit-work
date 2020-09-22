@@ -17,14 +17,14 @@ Mr.WITSANU KHAKHRUANGRUAN 6030822121
 ## [See source code](https://github.com/WITSANUKHA/streamlit-work/blob/master/stwork.py)
 """
 
-day = st.slider("Select Day",1,2,3,4,5)
-if day == 1:
+day = st.slider("Select Day",'1','2','3','4','5')
+if day == '1':
         url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190101.csv")
-elif day == 2:
+elif day == '2':
         url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190102.csv")
-elif day == 3:
+elif day == '3':
         url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190103.csv")
-elif day == 4:
+elif day == '4':
         url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190104.csv")
 else:
         url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190105.csv")
