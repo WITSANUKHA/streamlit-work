@@ -6,9 +6,9 @@ import pydeck as pdk
 import datetime
 
 st.title("ST WORK")
-st.markdown(
-"""
-[See source code](https://github.com/streamlit/demo-uber-nyc-pickups/blob/master/app.py)
+st.markdown("""
+Mr.WITSANU KHAKHRUANGRUAN 6030822121
+[See source code](https://github.com/WITSANUKHA/streamlit-work/blob/master/stwork.py)
 """)
 
 START = "timestart"
