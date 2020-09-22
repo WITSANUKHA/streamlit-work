@@ -35,7 +35,7 @@ def load_data(nrows):
     data.rename(lowercase, axis="columns", inplace=True)
     data[time_start] = pd.to_datetime(data[time_start])
     return data
-data = load_data(),
+data = load_data(100000),
 
 time = st.slider("Select time",0,23)
 data = data[data[time_start].dt.hour == hour]
