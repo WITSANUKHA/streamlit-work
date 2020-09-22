@@ -16,7 +16,7 @@ Mr.WITSANU KHAKHRUANGRUAN 6030822121
 """
 ## [See source code](https://github.com/WITSANUKHA/streamlit-work/blob/master/stwork.py)
 """
-
+time_start = "timestart"
 day = st.slider("Select Day",1,5,step = 1)
 if day == 1:
         url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190101.csv")
@@ -29,13 +29,11 @@ elif day == 4:
 else:
         url = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190105.csv")
 
-time_start = "timestart"
-
 def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows)
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis="columns", inplace=True)
-    data[time_start] = pd.to_datetime(data[time_start]'%d/%m?/%Y %H:%M')
+    data[time_start] = pd.to_datetime(data[time_start])
     return data
 data = load_data(100000)
 
