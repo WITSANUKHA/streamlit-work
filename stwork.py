@@ -26,7 +26,7 @@ day = st.slider("Select Day",1,5,step = 1)
 if day == 1:
         DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190101.csv")
 elif day == 2:
-        DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190102.csv")
+        DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190101.csv")
 elif day == 3:
         DATA_URL = ("https://github.com/WITSANUKHA/streamlit-work/blob/master/20190103.csv")
 elif day == 4:
