@@ -74,9 +74,9 @@ st.write(pdk.Deck(
 
 st.subheader("Breakdown by minute between %i:00 and %i:00" % (hour, (hour + 3) % 24))
 filtered = data[
-    (data[START].dt.hour >= hour) & (data[START].dt.hour < (hour + 3))
+    (data[time_start].dt.hour >= hour) & (data[time_start].dt.hour < (hour + 3))
 ]
-hist = np.histogram(filtered[START].dt.minute, bins=60, range=(0, 60))[0]
+hist = np.histogram(filtered[time_start].dt.minute, bins=60, range=(0, 60))[0]
 chart_data = pd.DataFrame({"minute": range(60), "pickups": hist})
 
 st.altair_chart(alt.Chart(chart_data)
