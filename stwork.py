@@ -97,13 +97,13 @@ if st.checkbox("Show raw data", False):
 ######################
 
 crs = "EPSG:4326"
-geometry = gp.points_from_xy(df.lon,df.lat)
-geo_df  = gp.GeoDataFrame(df,crs=crs,geometry=geometry)
+geometry = gp.points_from_xy(data.lonstartl,data.latstartl)
+geo_df  = gp.GeoDataFrame(data,crs=crs,geometry=geometry)
 
-nan_boundary  = gp.read_file('https://github.com/Maplub/AirQualityData/blob/master/nan_shp_wgs84.zip?raw=true')
+boundary  = gp.read_file(url)
 nanall = nan_boundary.unary_union
 
-nan_sta = geo_df.loc[geo_df.geometry.within(nanall)]
+sta = geo_df.loc[geo_df.geometry.within(nanall)]
 
 
 longitude = 100.819200
@@ -113,14 +113,12 @@ station_map = fo.Map(
 	location = [latitude, longitude], 
 	zoom_start = 10)
 
-latitudes = list(nan_sta.lat)
-longitudes = list(nan_sta.lon)
-labels = list(nan_sta.name)
+latitudes = list(sta.latstartl)
+longitudes = list(sta.latstartl)
 
-for lat, lng, label in zip(latitudes, longitudes, labels):
+for lat, lng in zip(latitudes, longitudes):
 	fo.Marker(
 		location = [lat, lng], 
-		popup = label,
 		icon = fo.Icon(color='red', icon='heart')
 	).add_to(station_map)
 
