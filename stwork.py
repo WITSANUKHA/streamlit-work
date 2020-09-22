@@ -47,7 +47,7 @@ data = data.drop(data.columns[0], axis=1)
 for i in range(5):
     data = data.drop(data.columns[6], axis=1)
 
-st.subheader("START Data between %i:00 and %i:00" % (hour, (hour + 3) % 24))
+st.subheader("START Data between %i:00 and %i:00" % (hour, (hour + 1) % 24))
 midpoint = (np.average(data["latstartl"]), np.average(data["lonstartl"]))
 
 st.write(pdk.Deck(
@@ -72,9 +72,9 @@ st.write(pdk.Deck(
     ],
 ))
 
-st.subheader("By minute between %i:00 and %i:00" % (hour, (hour + 3) % 24))
+st.subheader("By minute between %i:00 and %i:00" % (hour, (hour + 1) % 24))
 filtered = data[
-    (data[start].dt.hour >= hour) & (data[start].dt.hour < (hour + 3))
+    (data[start].dt.hour >= hour) & (data[start].dt.hour < (hour + 1))
 ]
 hist = np.histogram(filtered[start].dt.minute, bins=60, range=(0, 60))[0]
 chart_data = pd.DataFrame({"minute": range(60), "pickups": hist})
@@ -89,5 +89,5 @@ st.altair_chart(alt.Chart(chart_data)
     ), use_container_width=True)
 
 if st.checkbox("Show raw data", False):
-    st.subheader("Raw data by minute between %i:00 and %i:00" % (hour, (hour + 3) % 24))
+    st.subheader("Raw data by minute between %i:00 and %i:00" % (hour, (hour + 1) % 24))
     st.write(data)
