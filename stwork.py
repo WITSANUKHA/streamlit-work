@@ -47,7 +47,7 @@ data = data.drop(data.columns[0], axis=1)
 for i in range(5):
     data = data.drop(data.columns[6], axis=1)
 
-st.subheader("Data between %i:00 and %i:00" % (hour, (hour + 3) % 24))
+st.subheader("START Data between %i:00 and %i:00" % (hour, (hour + 3) % 24))
 midpoint = (np.average(data["latstartl"]), np.average(data["lonstartl"]))
 
 st.write(pdk.Deck(
@@ -72,9 +72,9 @@ st.write(pdk.Deck(
     ],
 ))
 
-st.subheader("Breakdown by minute between %i:00 and %i:00" % (hour, (hour + 3) % 24))
+st.subheader("By minute between %i:00 and %i:00" % (hour, (hour + 3) % 24))
 filtered = data[
-    (data[START].dt.hour >= hour) & (data[START].dt.hour < (hour + 3))
+    (data[start].dt.hour >= hour) & (data[start].dt.hour < (hour + 3))
 ]
 hist = np.histogram(filtered[START].dt.minute, bins=60, range=(0, 60))[0]
 chart_data = pd.DataFrame({"minute": range(60), "pickups": hist})
