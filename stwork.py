@@ -19,7 +19,7 @@ Mr.WITSANU KHAKHRUANGRUAN 6030822121
 '''
 
 start = "timestart"
-day = st.slider("Select Day",1,5,step = 1)
+day = int(input('input day 1-5',))
 if day == 1:
         url = ("https://raw.githubusercontent.com/WITSANUKHA/streamlit-work/master/20190101.csv")
 elif day == 2:
