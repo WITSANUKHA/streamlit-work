@@ -55,7 +55,7 @@ st.subheader("START Data between %i:00 and %i:00" % (hour, (hour + 1) % 24))
 midpoint = (np.average(data["latstartl"]), np.average(data["lonstartl"]))
 
 st.write(pdk.Deck(
-    map_style="mapbox://styles/mapbox/light",
+    map_style="mapbox://styles/mapbox/midnight",
     initial_view_state={
         "latitude": midpoint[0],
         "longitude": midpoint[1],
